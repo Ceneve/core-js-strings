@@ -154,8 +154,14 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeFirstOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeFirstOccurrences(str, value) {
+  const firstEntry = str.indexOf(value);
+  if (firstEntry !== -1) {
+    const newStr =
+      str.substring(0, firstEntry) + str.substring(firstEntry + value.length);
+    return newStr;
+  }
+  return str;
 }
 
 /**
@@ -170,8 +176,14 @@ function removeFirstOccurrences(/* str, value */) {
  *   removeLastOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeLastOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeLastOccurrences(str, value) {
+  const lastEntry = str.lastIndexOf(value);
+  if (lastEntry !== -1) {
+    const newStr =
+      str.substring(0, lastEntry) + str.substring(lastEntry + value.length);
+    return newStr;
+  }
+  return str;
 }
 
 /**
@@ -344,10 +356,16 @@ function isPalindrome(str) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  const array = sentence.split(' ');
+  let longestWord = array[0];
+  for (let i = 0; i < array.length; i += 1) {
+    if (array[i].length > longestWord.length) {
+      longestWord = array[i];
+    }
+  }
+  return longestWord;
 }
-
 /**
  * Returns the string where each word is reversed.
  *
@@ -380,8 +398,20 @@ function reverseWords(str) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+  let newStr = '';
+  for (let i = 0; i < str.length; i += 1) {
+    if (uppercase.includes(str[i])) {
+      newStr += str[i].toLowerCase();
+    } else if (lowercase.includes(str[i])) {
+      newStr += str[i].toUpperCase();
+    } else {
+      newStr += str[i];
+    }
+  }
+  return newStr;
 }
 
 /**
